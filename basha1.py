@@ -325,9 +325,10 @@ if not st.session_state["order_done"]:
                         f"• {v['name']} × {v['qty']} = {round(v['price']*v['qty'],2)} د.ل"
                         for v in cart.values()
                     ])
+                    order_success = True
                     for pid, item in cart.items():
                         try:
-                            supabase.table("orders").insert({
+                            res = supabase.table("orders").insert({
                                 "customer_name": c_name,
                                 "phone":         c_phone,
                                 "city":          c_city,
@@ -340,8 +341,14 @@ if not st.session_state["order_done"]:
                                 "managed_by":    "customer",
                                 "created_at":    str(datetime.now())
                             }).execute()
+                            if not res.data:
+                                st.error(f"⚠️ لم يحفظ: {res}")
+                                order_success = False
                         except Exception as e:
-                            st.error(f"خطأ: {e}")
+                            st.error(f"❌ خطأ: {e}")
+                            order_success = False
+                    if not order_success:
+                        st.stop()
 
                     wa_msg = (
                         f"🌸 طلب جديد - {store_name}\n"
