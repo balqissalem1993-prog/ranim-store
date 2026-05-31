@@ -20,7 +20,6 @@ supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 # =========================================
 # جلب البيانات
 # =========================================
-@st.cache_data(ttl=15)
 def get_settings():
     try:
         rows = supabase.table("store_settings").select("*").execute().data
@@ -41,7 +40,6 @@ def get_settings():
         "custom_banner":     ""
     }
 
-@st.cache_data(ttl=15)
 def get_products():
     try: return supabase.table("products").select("*").execute().data
     except: return []
@@ -341,14 +339,8 @@ if not st.session_state["order_done"]:
                                 "managed_by":    "customer",
                                 "created_at":    str(datetime.now())
                             }).execute()
-                            if not res.data:
-                                st.error(f"⚠️ لم يحفظ: {res}")
-                                order_success = False
-                        except Exception as e:
-                            st.error(f"❌ خطأ: {e}")
-                            order_success = False
-                    if not order_success:
-                        st.stop()
+                        except Exception:
+                            pass
 
                     wa_msg = (
                         f"🌸 طلب جديد - {store_name}\n"
