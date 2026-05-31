@@ -134,29 +134,46 @@ total_price = sum(v["price"]*v["qty"] for v in cart.values())
 # =========================================
 # HERO
 # =========================================
-st.markdown(f"""
-<div style="background:linear-gradient(145deg,{C_BG} 0%,{C_PRIMARY}33 60%,{C_BG} 100%);
-            padding:50px 20px 30px;text-align:center;">
-""", unsafe_allow_html=True)
-
-if logo_url:
-    c1,c2,c3 = st.columns([2,1,2])
-    with c2: st.image(logo_url, width=140)
-else:
-    st.markdown("<div style='font-size:4rem;text-align:center'>🌸</div>", unsafe_allow_html=True)
-
-st.markdown(f"""
-    <div style="font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:700;
-                color:{C_TEXT};letter-spacing:5px;text-align:center;margin:16px 0 8px;">
-        {store_name}
+logo_html = f'''
+    <div style="margin-bottom:20px;">
+        <img src="{logo_url}" style="
+            width:150px;height:150px;
+            border-radius:50%;
+            object-fit:cover;
+            border:4px solid {C_ACCENT};
+            box-shadow:0 8px 32px rgba(201,168,110,0.35);
+        "/>
     </div>
-    <div style="font-size:1.05rem;color:{C_PRIMARY};letter-spacing:2px;
-                text-align:center;margin-bottom:16px;">
-        {welcome_msg}
-    </div>
-    <div style="width:80px;height:2px;
-                background:linear-gradient(90deg,transparent,{C_ACCENT},transparent);
-                margin:0 auto 10px;"></div>
+''' if logo_url else '<div style="font-size:4rem;margin-bottom:16px;">🌸</div>'
+
+st.markdown(f"""
+<div style="
+    background:linear-gradient(160deg,{C_BG} 0%,{C_PRIMARY}55 50%,{C_BG} 100%);
+    padding:60px 20px 40px;
+    text-align:center;
+    position:relative;
+">
+    {logo_html}
+    <div style="
+        font-family:'Playfair Display',serif;
+        font-size:2.6rem;
+        font-weight:700;
+        color:{C_TEXT};
+        letter-spacing:6px;
+        margin:0 0 10px;
+    ">{store_name}</div>
+    <div style="
+        font-size:1rem;
+        color:{C_PRIMARY};
+        letter-spacing:2px;
+        margin-bottom:20px;
+        font-style:italic;
+    ">{welcome_msg}</div>
+    <div style="
+        width:80px;height:2px;
+        background:linear-gradient(90deg,transparent,{C_ACCENT},transparent);
+        margin:0 auto;
+    "></div>
 </div>
 """, unsafe_allow_html=True)
 
