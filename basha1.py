@@ -206,7 +206,7 @@ if not st.session_state["order_done"]:
                                 box-shadow:0 4px 20px {C_PRIMARY}44;
                                 border:1px solid {C_PRIMARY}44;
                                 background:white;margin-bottom:8px;">
-                        <img src="{img}" style="width:100%;height:220px;object-fit:cover;display:block;"/>
+                        <img src="{img}" style="width:100%;height:320px;object-fit:cover;display:block;"/>
                         <div style="padding:16px 18px 6px;">
                             <div style="font-family:'Playfair Display',serif;font-size:1rem;
                                         color:{C_TEXT};font-weight:600;margin-bottom:4px;">{name}</div>
@@ -220,7 +220,7 @@ if not st.session_state["order_done"]:
                                 box-shadow:0 4px 20px {C_PRIMARY}44;
                                 border:1px solid {C_PRIMARY}44;
                                 background:white;margin-bottom:8px;">
-                        <div style="height:220px;background:linear-gradient(135deg,{C_BG},{C_ACCENT}33);
+                        <div style="height:320px;background:linear-gradient(135deg,{C_BG},{C_ACCENT}33);
                                     display:flex;align-items:center;justify-content:center;font-size:3.5rem;">🌸</div>
                         <div style="padding:16px 18px 6px;">
                             <div style="font-family:'Playfair Display',serif;font-size:1rem;
